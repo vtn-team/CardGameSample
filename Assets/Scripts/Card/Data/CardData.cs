@@ -38,7 +38,7 @@ public class CardData : ScriptableObject
 
     public void Execute(Evaluator eval)
     {
-
+        _effects.ForEach(e => e.Execute(eval));
     }
 
     static public bool IsSelectableTareget(TargetType type)

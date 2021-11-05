@@ -10,7 +10,7 @@ public enum ForceType
     Opponent
 }
 
-class Character : UIElement
+public class Character : UIElement
 {
     [SerializeField] Text _hpText;
     [SerializeField] Text _atkText;
@@ -36,5 +36,11 @@ class Character : UIElement
     {
         _hpText.text = _hp.ToString();
         _atkText.text = _atk.ToString();
+    }
+
+    public virtual void Damage(int dmg)
+    {
+        _hp -= dmg;
+        UpdateView();
     }
 }

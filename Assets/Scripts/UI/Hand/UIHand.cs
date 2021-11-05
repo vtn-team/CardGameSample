@@ -67,6 +67,7 @@ class UIHand : UISelectable
 
     public override UIResultCode Decide()
     {
+        GameManager.Instance.SelectCard(_selectIndex);
         if(_cards[_selectIndex].HasTargetSelect)
         {
             return UIResultCode.NextUI;

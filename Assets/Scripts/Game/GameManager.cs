@@ -31,9 +31,27 @@ class GameManager
         //バフを加算する
     }
 
-    public void ExecuteCard(int selectHand)
+    public void ExecuteCard()
     {
-        Evaluator eval = _player.Hand[selectHand].Evaluate();
+        Evaluator eval = _player.Hand[_selectHand].Evaluate();
+        eval.SetTarget(_target);
+        _player.Hand[_selectHand].Execute(eval);
 
+        _uiManager.StartMain();
+    }
+
+
+    //tbd 
+    int _selectHand = 0;
+    Character _target = null;
+
+    public void SelectCard(int index)
+    {
+        _selectHand = index;
+    }
+
+    public void SetTarget(Character target)
+    {
+        _target = target;
     }
 }

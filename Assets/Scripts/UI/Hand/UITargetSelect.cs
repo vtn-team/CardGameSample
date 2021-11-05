@@ -59,6 +59,7 @@ class UITargetSelect : UISelectable
 
     public override UIResultCode Decide()
     {
+        GameManager.Instance.SetTarget(_targets[_selectIndex]);
         return UIResultCode.Execute;
     }
 

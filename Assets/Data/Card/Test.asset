@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: 1
   _name: "\u30C0\u30E1\u30FC\u30B8"
   _cost: 1
-  _effectText: "\u5BFE\u8C61\u306B3\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+  _effectText: "\u5BFE\u8C61\u306B{%efval_0}\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   _useCondition: []
   _effects:
   - _targetType: 2

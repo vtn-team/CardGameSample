@@ -28,4 +28,12 @@ public class CardEffect : ITarget
         }
         return eval;
     }
+
+    virtual public void Execute(Evaluator eval)
+    {
+        if (_condition.All(c => c.Check(eval)))
+        {
+            _ability.Execute(eval);
+        }
+    }
 }

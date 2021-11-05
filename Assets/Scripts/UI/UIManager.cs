@@ -9,13 +9,21 @@ class UIManager
 {
     UISelectable _select = null;
     Stack<UISelectable> _uiStack = new Stack<UISelectable>();
+    UIHand _startSelectUI;
 
     public void Setup()
     {
         TaskManager.Instance.Register(Update, this, 0);
 
-        _select = GameObject.Find("UI/Hand").GetComponent<UIHand>();
-        _select.StartSelect();
+        _startSelectUI = GameObject.Find("UI/Hand").GetComponent<UIHand>();
+        StartMain();
+    }
+
+    public void StartMain()
+    {
+        _uiStack.Clear();
+        _startSelectUI.StartSelect();
+        _select = _startSelectUI;
     }
 
     void Cancel()
@@ -50,9 +58,9 @@ class UIManager
                     break;
 
                 case UIResultCode.Execute:
-                    GameManager.Instance.ExecuteCard(_select.SelectIndex);
                     _select.Term();
                     _select = null;
+                    GameManager.Instance.ExecuteCard();
                     break;
 
                 case UIResultCode.NextUI:

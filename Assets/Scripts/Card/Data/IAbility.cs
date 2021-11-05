@@ -5,5 +5,5 @@ public interface IAbility
     AbilityType AbilityType { get; }
 
     void Evaluate(Evaluator eval);
-    void Execute();
+    void Execute(Evaluator eval);
 }
