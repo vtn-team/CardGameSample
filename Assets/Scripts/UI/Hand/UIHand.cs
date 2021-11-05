@@ -20,7 +20,22 @@ class UIHand : UISelectable
 
     void Setup()
     {
+        var hand = GameManager.Player.Hand;
+        var width = _prefab.Width;
+        var left = -width * hand.Count / 2 + width / 2;
+        for (int i = 0; i < MAX_HAND; ++i)
+        {
+            if (i >= hand.Count)
+            {
+                _cards[i].Disactive();
+                continue;
+            }
+            _cards[i].Setup(hand[i]);
+            _cards[i].RectTransform.localPosition = new Vector3(left + width * i, 0, _cards[i].RectTransform.position.z);
+            _cards[i].Active();
+        }
 
+        Select(0);
     }
 
     public override void StartSelect()
@@ -31,8 +46,9 @@ class UIHand : UISelectable
     public override void Select(int select)
     {
         _selectIndex += select;
+        var hand = GameManager.Player.Hand;
 
-        if (_selectIndex >= _cards.Count) _selectIndex = _cards.Count - 1;
+        if (_selectIndex >= hand.Count) _selectIndex = hand.Count - 1;
         if (_selectIndex < 0) _selectIndex = 0;
 
         for(int i=0; i< _cards.Count; ++i)
@@ -40,7 +56,7 @@ class UIHand : UISelectable
             Vector3 pos = _cards[i].RectTransform.localPosition;
             if (i == _selectIndex)
             {
-                _cards[i].RectTransform.localPosition = new Vector3(pos.x, -30, 0);
+                _cards[i].RectTransform.localPosition = new Vector3(pos.x, 30, 0);
             }
             else
             {

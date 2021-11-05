@@ -10,7 +10,7 @@ public enum ForceType
     Opponent
 }
 
-class Character : MonoBehaviour
+class Character : UIElement
 {
     [SerializeField] Text _hpText;
     [SerializeField] Text _atkText;
@@ -26,6 +26,11 @@ class Character : MonoBehaviour
     public int HP => _hp;
     public int MaxHP => _maxHp;
     public int ATK => _atk;
+
+    public virtual void Setup()
+    {
+
+    }
 
     protected void UpdateView()
     {

@@ -15,20 +15,23 @@ class UIManager
         TaskManager.Instance.Register(Update, this, 0);
 
         _select = GameObject.Find("UI/Hand").GetComponent<UIHand>();
-        _uiStack.Push(_select);
+        _select.StartSelect();
     }
 
     void Cancel()
     {
-        if (_uiStack.Count > 1)
+        if (_uiStack.Count > 0)
         {
             _select.Term();
             _select = _uiStack.Pop();
+            _select.StartSelect();
         }
     }
 
     int Update()
     {
+        if (_select == null) return 0;
+
         if (Input.GetButtonDown("Next"))
         {
             _select.Select(+1);
@@ -47,15 +50,25 @@ class UIManager
                     break;
 
                 case UIResultCode.Execute:
+                    GameManager.Instance.ExecuteCard(_select.SelectIndex);
+                    _select.Term();
+                    _select = null;
                     break;
 
                 case UIResultCode.NextUI:
-                    _uiStack.Push(_select.GetNext());
+                    {
+                        var next = _select.GetNext();
+                        _uiStack.Push(_select);
+                        _select.Term();
+                        next.StartSelect();
+                        _select = next;
+                    }
                     break;
             }
         }
         if (Input.GetButtonDown("Cancel"))
         {
+            Debug.Log("cancel");
             Cancel();
         }
 

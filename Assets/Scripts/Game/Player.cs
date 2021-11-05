@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class Player : Character
 {
-    void Setup()
+    public override void Setup()
     {
         _force = ForceType.Friend;
         _maxHp = _hp = 100;

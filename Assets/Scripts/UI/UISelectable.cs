@@ -8,7 +8,7 @@ public abstract class UISelectable : UIElement
 {
     protected List<UIElement> _elements;
     protected int _selectIndex;
-
+    public int SelectIndex => _selectIndex;
 
     public abstract void StartSelect();
 

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c670018064e6544ac921292162a493, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  _id: 1
+  _name: "\u30C0\u30E1\u30FC\u30B8"
+  _cost: 1
+  _effectText: "\u5BFE\u8C61\u306B3\u306E\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+  _useCondition: []
+  _effects:
+  - _targetType: 2
+    Priority: 0
+    _condition: []
+    _ability:
+      id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DamageAbility, ns: , asm: Assembly-CSharp}
+      data:
+        _damage: 1

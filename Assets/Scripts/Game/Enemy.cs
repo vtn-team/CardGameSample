@@ -7,7 +7,7 @@ class Enemy : Character
 {
     [SerializeField] EnemyData _data;
     
-    void Setup()
+    public override void Setup()
     {
         _force = ForceType.Opponent;
         _maxHp = _hp = _data.HP;

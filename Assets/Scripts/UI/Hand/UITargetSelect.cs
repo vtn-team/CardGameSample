@@ -36,16 +36,25 @@ class UITargetSelect : UISelectable
             }
             _targets.Add(c);
         }
+
+        Select(0);
     }
 
     public override void Select(int select)
     {
         _selectIndex += select;
 
-        if (_selectIndex >= _targets.Count) _selectIndex = _targets.Count - 1;
-        if (_selectIndex < 0) _selectIndex = 0;
+        if (_targets.Count > 0)
+        {
+            if (_selectIndex >= _targets.Count) _selectIndex = _targets.Count - 1;
+            if (_selectIndex < 0) _selectIndex = 0;
+        }
+        else
+        {
+            _selectIndex = 0;
+        }
 
-        this.RectTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, _targets[_selectIndex].transform.position);
+        this.RectTransform.position = _targets[_selectIndex].RectTransform.position;
     }
 
     public override UIResultCode Decide()

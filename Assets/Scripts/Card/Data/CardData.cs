@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "Game/CardData", order = 1)]
@@ -10,19 +11,22 @@ public class CardData : ScriptableObject
     [SerializeField] string _id;
     [SerializeField] string _name;
     [SerializeField] int _cost;
+    [SerializeField] string _effectText;
 
     [SerializeField, SerializeReference, SubclassSelector]
     List<ICondition> _useCondition = new List<ICondition>();
 
-    [SerializeField, SerializeReference, SubclassSelector]
+    [SerializeField]
     List<CardEffect> _effects = new List<CardEffect>();
 
     public string Name => _name;
     public int Cost => _cost;
 
-    public bool CheckUse(Evaluator eval)
+    public bool CheckUse()
     {
-        return _useCondition.All(c => c.Check(eval));
+        if (GameManager.Player.Mana < _cost) return false; 
+
+        return _useCondition.All(c => c.Check(null));
     }
 
     public Evaluator Evaluate()
@@ -75,8 +79,16 @@ public class CardData : ScriptableObject
         return ret;
     }
 
-    public string GetEffectText()
+    public string GetEffectText(Evaluator eval)
     {
-        return "";
+        string text = _effectText;
+        var matches = Regex.Matches(_effectText, "{%efval_([0-9])}");
+        foreach (Match m in matches)
+        {
+            int index = int.Parse(m.Groups[1].Value);
+            text = text.Replace(m.Value, _effects[index].Value.ToString());
+        }
+
+        return text;
     }
 }

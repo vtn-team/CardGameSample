@@ -1721,6 +1721,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 844c3934b9d20f44d91c48c6c46f47a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hands:
+  - {fileID: 11400000, guid: 2010457a55bd5844b83980eaeca6f3c1, type: 2}
+  - {fileID: 11400000, guid: 2010457a55bd5844b83980eaeca6f3c1, type: 2}
+  - {fileID: 11400000, guid: 2010457a55bd5844b83980eaeca6f3c1, type: 2}
+  - {fileID: 11400000, guid: 2010457a55bd5844b83980eaeca6f3c1, type: 2}
+  - {fileID: 11400000, guid: 2010457a55bd5844b83980eaeca6f3c1, type: 2}
 --- !u!1 &2096770113
 GameObject:
   m_ObjectHideFlags: 0
